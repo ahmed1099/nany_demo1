@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:location/location.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,90 +12,91 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Stack(
+        body: Stack(children: [
+      const GoogleMap(
+        zoomControlsEnabled: false,
+        initialCameraPosition: CameraPosition(
+          target: LatLng(37.43296265331129, -122.08832357078792),
+        ),
+      ),
+      Column(
         children: [
-          const GoogleMap(
-            zoomControlsEnabled: false,
-            initialCameraPosition: CameraPosition(
-              target: LatLng(37.43296265331129, -122.08832357078792),
-            ),
-          ),
-          Positioned(
-            top: 85,
-            left: 15,
-            width: 380,
-            child: Container(
-              height: 85,
+          Row(children: [
+            Container(
+              width: screenWidth,
+              padding: EdgeInsets.only(
+                top: 44,
+                left: 64,
+                right: 64,
+              ),
+              height: 74,
               decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.purple,
-                        blurRadius: 19.0,
-                        spreadRadius: 0.5,
-                        offset: Offset(0.7, 0.7))
+                        color: Color.fromRGBO(197, 201, 209, 0.12),
+                        blurRadius: 45,
+                        spreadRadius: 0,
+                        offset: Offset(0, 8))
                   ]),
-              child: Column(children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'موقعك الحالى',
-                      style: TextStyle(
-                          fontSize: 17,
-                          color: Color.fromARGB(31, 20, 20, 20),
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Icon(Icons.location_on_rounded),
-                    SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    MaterialButton(
-                      color: Colors.white,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20))),
-                      child: const Text(
-                        "تغيير الموقع",
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      onPressed: () {
-                        print('.');
-                      },
-                    ),
-                    const SizedBox(
-                      width: 140,
-                    ),
-                    const Text(
-                      'الرياض، العزيزية',
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                  ],
-                )
-              ]),
             ),
-          ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  'موقعك الحالى',
+                  style: TextStyle(
+                      fontSize: 17,
+                      color: Color.fromARGB(31, 20, 20, 20),
+                      fontWeight: FontWeight.bold),
+                ),
+                Icon(Icons.location_on_rounded),
+                SizedBox(
+                  width: 10,
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                MaterialButton(
+                  color: Colors.white,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: const Text(
+                    "تغيير الموقع",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  onPressed: () {
+                    print('.');
+                  },
+                ),
+                const SizedBox(
+                  width: 140,
+                ),
+                const Text(
+                  'الرياض، العزيزية',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+              ],
+            )
+          ]),
           Positioned(
             top: 250,
             left: 15,
             width: 380,
             child: Container(
-                height: 555,
+                height: screenHeight * 0.77843601895,
                 decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -241,7 +241,7 @@ class _HomeState extends State<Home> {
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Row(
+                                const Row(
                                   children: [
                                     Text(
                                       'تجربة مثالية و رائعة جدا، تعاملت معها عدة مرات و ذات التزام عالي و خلق',
@@ -283,7 +283,7 @@ class _HomeState extends State<Home> {
                                         ),
                                       ],
                                     ),
-                                    Column(
+                                    const Column(
                                       children: [
                                         Row(
                                           mainAxisAlignment:
@@ -347,16 +347,21 @@ class _HomeState extends State<Home> {
                                   ],
                                 ),
                                 MaterialButton(
-                                    minWidth: 350,
-                                    height: 30,
-                                    color: const Color.fromARGB(
-                                        255, 170, 100, 182),
+                                    minWidth: 307,
+                                    height: 50,
+                                    color:
+                                        const Color.fromRGBO(180, 136, 247, 1),
                                     shape: const RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
-                                            Radius.circular(20))),
+                                            Radius.circular(12))),
                                     child: const Text(
                                       "ارسال طلب حجز",
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontFamily: 'IBM Plex Sans Arabic',
+                                          fontWeight: FontWeight.w500,
+                                          color:
+                                              Color.fromRGBO(255, 255, 255, 1)),
                                     ),
                                     onPressed: () {
                                       print('.');
@@ -404,6 +409,6 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-    );
+    ]));
   }
 }
